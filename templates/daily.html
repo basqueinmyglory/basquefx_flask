@@ -1,0 +1,71 @@
+{% extends "adminbase.html" %}
+{% block content %}
+
+<link rel="stylesheet" href="{{url_for('static',filename='css/style2.css')}}">
+<div id="contact-form">
+	<div>
+		<h1>Daily Forecast Entry Form</h1>
+	</div>
+		<p id="failure">Oopsie...message not sent.</p>
+		<p id="success">Your message was sent successfully. Thank you!</p>
+
+		   <form method="post" action="/">
+			<div>
+		      <label for="date">
+		      	<span class="required">Date: *</span>
+		      	<input type="date" id="date" name="date" value="" placeholder="Date" tabindex="2" required="required" />
+		      </label>
+			</div>
+			<div>
+					<label for="strong_cur">
+					<span>Strong Currency: </span>
+						<select id="subject" name="subject" tabindex="4">
+							 <option value="USD">USD</option>
+							 <option value="GBP">GBP</option>
+							 <option value="JPY">JPY</option>
+							 <option value="EUR">EUR</option>
+							 <option value="AUD">AUD</option>
+							 <option value="NZD">NZD</option>
+							 <option value="CAD">CAD</option>
+						</select>
+					</label>
+			</div>
+			<div>
+		      <label for="weak_cur">
+		      <span>Weak Currency: </span>
+			      <select id="subject" name="subject" tabindex="4">
+			         <option value="USD">USD</option>
+			         <option value="GBP">GBP</option>
+			         <option value="JPY">JPY</option>
+							 <option value="EUR">EUR</option>
+							 <option value="AUD">AUD</option>
+							 <option value="NZD">NZD</option>
+							 <option value="CAD">CAD</option>
+			      </select>
+		      </label>
+			</div>
+			<div>
+		      <label for="message">
+		      	<span class="required">Reason for Strength: *</span>
+		      	<textarea style="min-width: 600px;" id="content" name="strong_cur" placeholder="Reason for Strength" tabindex="5" required="required"></textarea>
+		      </label>
+			</div>
+			<div>
+					<label for="message">
+						<span class="required">Reason for Weakness: *</span>
+						<textarea style="min-width: 600px;" id="content" name="weak_cur" placeholder="Reason for Weakness" tabindex="5" required="required"></textarea>
+					</label>
+			</div>
+			<div>
+					<label for="message">
+						<span class="required">Reason for Concern: *</span>
+						<textarea style="min-width: 600px;" id="content" name="consider_reason" placeholder="Reason for Concern" tabindex="5" required="required"></textarea>
+					</label>
+			</div>
+			<div>
+		      <button name="submit" type="submit" id="submit" >SEND</button>
+			</div>
+		   </form>
+
+	</div>
+{%endblock%}

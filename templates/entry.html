@@ -1,0 +1,47 @@
+{% extends "adminbase.html" %}
+{% block content %}
+
+<link rel="stylesheet" href="{{url_for('static',filename='css/style2.css')}}">
+<div id="contact-form">
+	<div>
+		<h1>Blog Entry Form</h1>
+	</div>
+		<p id="failure">Oopsie...message not sent.</p>
+		<p id="success">Your message was sent successfully. Thank you!</p>
+
+		   <form method="post" action="/">
+			<div>
+		      <label for="author">
+		      	<span class="required">Author: *</span>
+		      	<input type="text" id="name" name="name" value="" placeholder="Your Name" required="required" tabindex="1" autofocus="autofocus" />
+		      </label>
+			</div>
+			<div>
+		      <label for="date">
+		      	<span class="required">Date: *</span>
+		      	<input type="date" id="date" name="date" value="" placeholder="Date" tabindex="2" required="required" />
+		      </label>
+			</div>
+			<div>
+		      <label for="subject">
+		      <span>Subject: </span>
+			      <select id="subject" name="subject" tabindex="4">
+			         <option value="review">Review</option>
+			         <option value="outlook">Out Look</option>
+			         <option value="misc">Misc</option>
+			      </select>
+		      </label>
+			</div>
+			<div>
+		      <label for="message">
+		      	<span class="required">Content: *</span>
+		      	<textarea style="min-width: 600px; height: 400px;" id="content" name="content" placeholder="Content for Blog" tabindex="5" required="required"></textarea>
+		      </label>
+			</div>
+			<div>
+		      <button name="submit" type="submit" id="submit" >SEND</button>
+			</div>
+		   </form>
+
+	</div>
+{%endblock%}
