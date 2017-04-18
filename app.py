@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect, request, url_for
 from flask_sqlalchemy import SQLAlchemy
 import datetime as dt
 import os
+from sqlalchemy import desc
 from flask_security import Security, SQLAlchemyUserDatastore, UserMixin, RoleMixin, login_required
 
 #Create App
@@ -79,7 +80,7 @@ class Blog(db.Model):
 #Rounting of pages
 @app.route('/')
 def home():
-    dailyget = Journal.query.order_by('entry_date').limit(1)
+    dailyget = Journal.query.order_by(desc('entry_date')).limit(1)
     return render_template("home.html", dailyget = dailyget)
 
 @app.route('/login/')
@@ -89,7 +90,7 @@ def login():
 
 @app.route('/blog/')
 def blog():
-    blogget = Blog.query.order_by('entry_date')
+    blogget = Blog.query.order_by(desc('entry_date'))
     return render_template("blog.html", blogget = blogget)
 
 @app.route('/entry/')
