@@ -93,6 +93,10 @@ def blog():
     blogget = Blog.query.order_by(desc('entry_date'))
     return render_template("blog.html", blogget = blogget)
 
+@app.route('/tools/')
+def tools():
+    return render_template("tools.html")
+
 @app.route('/entry/')
 @login_required
 def entry():
