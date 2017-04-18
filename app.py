@@ -39,9 +39,9 @@ security = Security(app, user_datastore)
 
 
 #Define Models for Content
-class journal(db.Model):
+class Journal(db.Model):
     __tablename__ = 'journal'
-    id = db.Column('id', db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     entry_date = db.Column('entry_date', db.Date)
     strong_cur = db.Column('strong_cur', db.String)
     weak_cur = db.Column('weak_cur', db.String)
@@ -49,8 +49,7 @@ class journal(db.Model):
     weak_reason = db.Column('weak_reason', db.String)
     consider_reason = db.Column('consider_reason', db.String)
 
-    def __init__(self, id, entry_date, strong_cur, weak_cur, strong_reason, weak_reason, consider_reason):
-        self.id = id
+    def __init__(self, entry_date, strong_cur, weak_cur, strong_reason, weak_reason, consider_reason):
         self.entry_date = entry_date
         self.strong_cur = strong_cur
         self.weak_cur = weak_cur
@@ -58,48 +57,65 @@ class journal(db.Model):
         self.weak_reason = weak_reason
         self.consider_reason = consider_reason
 
-class blog(db.Model):
+class Blog(db.Model):
     __tablename__ = 'blog'
-    id = db.Column('id', db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     entry_date = db.Column('entry_date', db.Date)
     author = db.Column('author', db.String)
+    subject = db.Column('subject', db.String)
     title = db.Column('title', db.String)
     content = db.Column('content', db.String)
 
 
-    def __init__(self, id, entry_date, title, content):
-        self.id = id
+    def __init__(self, entry_date, author, subject, title, content):
         self.entry_date = entry_date
+        self.author = author
+        self.subject = subject
         self.title = title
         self.content = content
+        
 
 
+#Rounting of pages
 @app.route('/')
 def home():
-    daily = journal.query.order_by('entry_date').limit(1)
-    return render_template("home.html", daily = daily)
-    #entry_date = dt.date.today()
+    dailyget = Journal.query.order_by('entry_date').limit(1)
+    return render_template("home.html", dailyget = dailyget)
 
 @app.route('/login/')
 @login_required
 def login():
-    return render_template("adminbase.html")
+    return render_template("loggedin.html")
 
 @app.route('/blog/')
 def blog():
     return render_template("blog.html")
 
-@app.route('/entry/', methods=['GET', 'POST'])
+@app.route('/entry/')
 @login_required
 def entry():
     return render_template('entry.html')
 
-@app.route('/daily/', methods=['GET', 'POST'])
+@app.route('/entry_add/', methods=['POST'])
+@login_required
+def entry_add():
+    add_entry = Blog(request.form['date'], request.form['name'], request.form['subject'], request.form['title'], request.form['content'])
+    db.session.add(add_entry)
+    db.session.commit()
+    return render_template('loggedin.html')
+
+@app.route('/daily/')
 @login_required
 def daily():
     return render_template('daily.html')
 
-
+@app.route('/daily_add/', methods=['POST'])
+@login_required
+def daily_add():
+    add_daily = Journal(request.form['date'], request.form['strong_cur'], request.form['weak_cur'], request.form['strong_rea'], request.form['weak_rea'], request.form['consider_reason'])
+    db.session.add(add_daily)
+    db.session.commit()
+    return render_template('loggedin.html')
 
 if __name__=="__main__":
     app.secret_key = os.urandom(12)
