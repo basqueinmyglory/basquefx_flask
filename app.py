@@ -89,7 +89,8 @@ def login():
 
 @app.route('/blog/')
 def blog():
-    return render_template("blog.html")
+    blogget = Blog.query.order_by('entry_date')
+    return render_template("blog.html", blogget = blogget)
 
 @app.route('/entry/')
 @login_required

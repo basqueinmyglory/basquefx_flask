@@ -66,8 +66,7 @@ h4{
 #contact-form textarea:focus {
    background-color: #E5E6E7;
 }
-#contact-form textarea {
-   width:600px;
+#contact-form textarea {    
    height: 150px;
    min-width: 600px;
 }

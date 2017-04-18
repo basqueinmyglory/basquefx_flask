@@ -1,12 +1,11 @@
 /* Bordered form */
 form {
-    border: 3px solid #f1f1f1;
+   
 }
 
 /* Full-width inputs */
 input[type=username], input[type=password] {
-    width: 100%;
-    padding: 12px 20px;
+    width: 30%;
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;

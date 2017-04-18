@@ -1,12 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
 
+{% for post in blogget %}
 <div class="w3-content w3-justify w3-text-grey w3-padding-36" id="about">
-    <h2 class="w3-text-light-grey">{{ Title }} - {{ entry_date }}</h2>
-    <hr style="width:200px " class="w3-opacity">
+    <h2 class="w3-text-light-grey">{{ post.title }} - {{ post.entry_date }}</h2>
+    <hr style="width:200px; margin:10px 0; " class="w3-opacity">
+    <p style="font-family: 'Playball', cursive;">{{ post.author }}</p>
     <p>
-      {{ content }}
+      {{ post.content }}
     </p>
+    <hr style="width:600px; margin-bottom: 50px;" class="w3-opacity">
 </div>
+{% endfor %}
+
 
 {%endblock%}
