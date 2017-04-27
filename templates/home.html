@@ -27,32 +27,73 @@
 
 <!-- End Contact Section -->
 <!-- Daily Forecast -->
-{% for day in dailyget %}
-<div class="w3-content w3-justify w3-text-grey w3-padding-48" id="forecast">
-<h2 class="w3-text-light-grey">Daily Forecast: {{ day.entry_date }}</h2>
-<hr style="width:200px" class="w3-opacity">
+<divstyle="width:100%;">
+      {% for day in dailyget %}
+    <div class="" style="float:left; width: 60%;">
+      <h2 class="w3-text-light-grey">Daily Forecast: {{ day.entry_date }}</h2>
+      <hr style="width:200px;" class="w3-opacity">
 
+      <p class="w3-wide" style="font-weight: bold; color: white;">Strong Currency: {{ day.strong_cur }}</p>
+        <div>
+      <p>
+      {{ day.strong_reason }}
+      </p>
+        </div>
+        <p class="w3-wide" style="font-weight: bold; color: white;">Weak Currency: {{ day.weak_cur }}</p>
+        <div>
+      <p>
+      {{ day.weak_reason }}</p>
+        </div>
+        <p class="w3-wide" style="font-weight: bold; color: white;">Notes</p>
+        <div>
+      <p>
+      {{ day.consider_reason }}</p>
+        </div>
+      <br>
+        {% endfor %}
+      </div>
 
-  <p class="w3-wide" style="font-weight: bold; color: white;">Strong Strong: {{ day.strong_cur }}</p>
-  <div>
-<p>
-{{ day.strong_reason }}
-</p>
-  </div>
-  <p class="w3-wide" style="font-weight: bold; color: white;">Weak Currency: {{ day.weak_cur }}</p>
-  <div>
-<p>
-{{ day.weak_reason }}</p>
-  </div>
-  <p class="w3-wide" style="font-weight: bold; color: white;">Notes</p>
-  <div>
-<p>
-{{ day.consider_reason }}</p>
-  </div>
-<br>
-  {% endfor %}
+    <div style="float:right; width: 30%;">
+      <div class="w3-text-grey; float:left;" style="" >
+      <h2 class="w3-text-light-grey">Currency Bias:</h2>
+      <hr style="width:200px" class="w3-opacity">
 
-
+      <table>
+        <tr>
+          <th style="font-weight: bold; color: white;">Currency</th>
+          <th style="font-weight: bold; color: white;">Outlook</th>
+        </tr>
+        <tr>
+        <td>USD</td>
+          <td>Filler</td>
+        </tr>
+        <tr>
+        <td>GBP</td>
+          <td>Filler</td>
+        </tr>
+        <tr>
+          <td>EUR</td>
+          <td>Filler</td>
+        </tr>
+        <tr>
+          <td>CAD</td>
+          <td>Filler</td>
+        </tr>
+        <tr>
+          <td>AUD</td>
+          <td>Filler</td>
+        </tr>
+        <tr>
+          <td>NZD</td>
+          <td>Filler</td>
+        </tr>
+        <tr>
+          <td>CHF</td>
+          <td>Filler</td>
+        </tr>
+      </table>
+      </div>
+    </div>
 
 </div>
 {%endblock%}
