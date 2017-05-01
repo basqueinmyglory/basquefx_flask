@@ -1,0 +1,109 @@
+{% extends "adminbase.html" %}
+{% block content %}
+
+<link rel="stylesheet" href="{{url_for('static',filename='css/style2.css')}}">
+<div id="contact-form">
+	<div>
+		<h1>Bias Input</h1>
+	</div>
+		<p id="failure">Oopsie...message not sent.</p>
+		<p id="success">Your message was sent successfully. Thank you!</p>
+
+	<form method="post" action="/bias_add/">
+		<div>
+			<label for="date">
+				<span class="required">Date: *</span>
+				<input type="date" id="date" name="date" value="" placeholder="Date" tabindex="2" required="required" />
+			</label>
+		</div>
+		<div>
+			<label for="usd">
+				<span>USD: </span>
+				<select id="usd" name="usd" tabindex="4">
+						<option value="Bear">Bear</option>
+						<option value="Neutral-Bear">Neutral-Bear</option>
+						<option value="Neutral">Neutral</option>
+						<option value="Neutral-Bull">Neutral-Bull</option>
+						<option value="Bull">Bull</option>
+				</select>
+			</label>
+		</div>
+		<div>
+			<label for="gbp">
+				<span>GBP: </span>
+				<select id="gbp" name="gbp" tabindex="4">
+						<option value="Bear">Bear</option>
+						<option value="Neutral-Bear">Neutral-Bear</option>
+						<option value="Neutral">Neutral</option>
+						<option value="Neutral-Bull">Neutral-Bull</option>
+						<option value="Bull">Bull</option>
+				</select>
+			</label>
+		</div>
+		<div>
+			<label for="eur">
+				<span>EUR: </span>
+				<select id="eur" name="eur" tabindex="4">
+						<option value="Bear">Bear</option>
+						<option value="Neutral-Bear">Neutral-Bear</option>
+						<option value="Neutral">Neutral</option>
+						<option value="Neutral-Bull">Neutral-Bull</option>
+						<option value="Bull">Bull</option>
+				</select>
+			</label>
+		</div>
+		<div>
+			<label for="cad">
+				<span>CAD: </span>
+				<select id="cad" name="cad" tabindex="4">
+						<option value="Bear">Bear</option>
+						<option value="Neutral-Bear">Neutral-Bear</option>
+						<option value="Neutral">Neutral</option>
+						<option value="Neutral-Bull">Neutral-Bull</option>
+						<option value="Bull">Bull</option>
+				</select>
+			</label>
+		</div>
+		<div>
+			<label for="chf">
+				<span>CHF: </span>
+				<select id="chf" name="chf" tabindex="4">
+						<option value="Bear">Bear</option>
+						<option value="Neutral-Bear">Neutral-Bear</option>
+						<option value="Neutral">Neutral</option>
+						<option value="Neutral-Bull">Neutral-Bull</option>
+						<option value="Bull">Bull</option>
+				</select>
+			</label>
+		</div>
+		<div>
+			<label for="aud">
+				<span>AUD: </span>
+				<select id="aud" name="aud" tabindex="4">
+						<option value="Bear">Bear</option>
+						<option value="Neutral-Bear">Neutral-Bear</option>
+						<option value="Neutral">Neutral</option>
+						<option value="Neutral-Bull">Neutral-Bull</option>
+						<option value="Bull">Bull</option>
+				</select>
+			</label>
+		</div>
+		<div>
+			<label for="nzd">
+				<span>NZD: </span>
+				<select id="nzd" name="nzd" tabindex="4">
+						<option value="Bear">Bear</option>
+						<option value="Neutral-Bear">Neutral-Bear</option>
+						<option value="Neutral">Neutral</option>
+						<option value="Neutral-Bull">Neutral-Bull</option>
+						<option value="Bull">Bull</option>
+				</select>
+			</label>
+		</div>
+		<div>
+			<button name="submit" type="submit" id="submit" >SEND</button>
+		</div>
+	</form>
+
+	</div>
+{%endblock%}

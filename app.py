@@ -74,14 +74,36 @@ class Blog(db.Model):
         self.subject = subject
         self.title = title
         self.content = content
-        
 
+class Bias(db.Model):
+    __tablename__ = 'bias'
+    id = db.Column(db.Integer, primary_key=True)
+    entry_date = db.Column('entry_date', db.Date)
+    usd = db.Column('usd', db.String)
+    gbp = db.Column('gbp', db.String)
+    eur = db.Column('eur', db.String)
+    cad = db.Column('cad', db.String)
+    chf = db.Column('chf', db.String)
+    aud = db.Column('aud', db.String)
+    nzd = db.Column('nzd', db.String)
+
+
+    def __init__(self, entry_date, usd, gbp, eur, cad, chf, aud, nzd):
+        self.entry_date = entry_date
+        self.usd = usd
+        self.gbp = gbp
+        self.eur = eur
+        self.cad = cad
+        self.chf = chf
+        self.aud = aud
+        self.nzd = nzd
 
 #Rounting of pages
 @app.route('/')
 def home():
     dailyget = Journal.query.order_by(desc('entry_date')).limit(1)
-    return render_template("home.html", dailyget = dailyget)
+    biasget = Bias.query.order_by(desc('entry_date')).limit(1)
+    return render_template("home.html", dailyget = dailyget, biasget = biasget)
 
 @app.route('/login/')
 @login_required
@@ -122,6 +144,20 @@ def daily_add():
     db.session.add(add_daily)
     db.session.commit()
     return render_template('loggedin.html')
+
+@app.route('/bias/')
+@login_required
+def bias():
+    return render_template('bias.html')
+
+@app.route('/bias_add/', methods=['POST'])
+@login_required
+def bias_add():
+    add_bias = Bias(request.form['date'], request.form['usd'], request.form['gbp'], request.form['eur'], request.form['cad'], request.form['chf'], request.form['aud'], request.form['nzd'])
+    db.session.add(add_bias)
+    db.session.commit()
+    return render_template('loggedin.html')
+
 
 if __name__=="__main__":
     app.secret_key = os.urandom(12)
