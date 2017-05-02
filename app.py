@@ -81,6 +81,7 @@ class Bias(db.Model):
     entry_date = db.Column('entry_date', db.Date)
     usd = db.Column('usd', db.String)
     gbp = db.Column('gbp', db.String)
+    jpy = db.Column('jpy', db.String)
     eur = db.Column('eur', db.String)
     cad = db.Column('cad', db.String)
     chf = db.Column('chf', db.String)
@@ -88,10 +89,11 @@ class Bias(db.Model):
     nzd = db.Column('nzd', db.String)
 
 
-    def __init__(self, entry_date, usd, gbp, eur, cad, chf, aud, nzd):
+    def __init__(self, entry_date, usd, gbp, jpy, eur, cad, chf, aud, nzd):
         self.entry_date = entry_date
         self.usd = usd
         self.gbp = gbp
+        self.jpy = jpy
         self.eur = eur
         self.cad = cad
         self.chf = chf
@@ -153,7 +155,7 @@ def bias():
 @app.route('/bias_add/', methods=['POST'])
 @login_required
 def bias_add():
-    add_bias = Bias(request.form['date'], request.form['usd'], request.form['gbp'], request.form['eur'], request.form['cad'], request.form['chf'], request.form['aud'], request.form['nzd'])
+    add_bias = Bias(request.form['date'], request.form['usd'], request.form['gbp'], request.form['eur'], request.form['jpy'], request.form['cad'], request.form['chf'], request.form['aud'], request.form['nzd'])
     db.session.add(add_bias)
     db.session.commit()
     return render_template('loggedin.html')
