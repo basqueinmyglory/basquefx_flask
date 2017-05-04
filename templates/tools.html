@@ -6,7 +6,9 @@
 <div class="w3-padding-64 w3-content" id="photos">
   <h2 class="w3-text-light-grey">News Headlines</h2>
   <hr style="width:200px" class="w3-opacity">
-<p>Coming Soon</p>
+{% block forexcalendar %}
+{% endblock forexcalendar%}
+
 </div>
 
 
@@ -14,7 +16,8 @@
 <div class="w3-padding-64 w3-content" id="photos">
   <h2 class="w3-text-light-grey">Strength Indicator</h2>
   <hr style="width:200px" class="w3-opacity">
-<p>Coming Soon</p>
+{% block StrInd %}
+{% endblock StrInd%}
 </div>
 
 <!-- Resources Section -->
@@ -32,5 +35,6 @@
 <a href="{{ url_for('login') }}" style="text-decoration: none;">Admin Page</a>
 </div>
 
+</div>
 
-{%endblock%}
+{% endblock%}

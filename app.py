@@ -119,7 +119,7 @@ def blog():
 
 @app.route('/tools/')
 def tools():
-    return render_template("tools.html")
+    return render_template('forexcal.html')
 
 @app.route('/entry/')
 @login_required
