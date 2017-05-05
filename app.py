@@ -100,6 +100,28 @@ class Bias(db.Model):
         self.aud = aud
         self.nzd = nzd
 
+
+class events(db.Model):
+    __tablename__ = 'events'
+    index = db.Column(db.Integer, primary_key=True)
+    Date = db.Column('Date', db.Date)
+    Currency = db.Column('Currency', db.String)
+    Event = db.Column('Event', db.String)
+    Time_Eastern = db.Column('Time_Eastern', db.String)
+    Impact = db.Column('Impact', db.String)
+    Forecast = db.Column('Forecast', db.String)
+    Previous = db.Column('Previous', db.String)
+
+    def __init__(self, Date, Currency, Event, Time_Eastern, Impact, Forecast, Previous):
+        self.Date = Date
+        self.Currency = Currency
+        self.Event = Event
+        self.Time_Eastern = Time_Eastern
+        self.Impact = Impact
+        self.Forecast = Forecast
+        self.Previous = Previous
+
+
 #Rounting of pages
 @app.route('/')
 def home():
@@ -119,7 +141,8 @@ def blog():
 
 @app.route('/tools/')
 def tools():
-    return render_template('forexcal.html')
+    calget = events.query.order_by('Time_Eastern')
+    return render_template('tools.html', calget =calget)
 
 @app.route('/entry/')
 @login_required

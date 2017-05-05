@@ -1,0 +1,25 @@
+  <table border="1" class="dataframe">
+    <thead>
+    <tr style="text-align: right;">
+      <th>Currency</th>
+      <th>Event</th>
+      <th>Impact</th>
+      <th>Time_Eastern</th>
+      <th>Forecast</th>
+      <th>Previous</th>
+    </tr>
+  </thead>
+  {% for row in calget %}
+   <tbody>
+     {% for cell in row %}
+    <tr>
+      <td>cell.Currency</td>
+      <td>cell.Event</td>
+      <td>cell.Impact</td>
+      <td>cell.Time_Eastern</td>
+      <td>cell.Forecast</td>
+      <td>cell.Previous</td>
+    </tr>
+    {%endfor%}
+    {%endfor%}
+  </table>

@@ -6,9 +6,32 @@
 <div class="w3-padding-64 w3-content" id="photos">
   <h2 class="w3-text-light-grey">News Headlines</h2>
   <hr style="width:200px" class="w3-opacity">
-{% block forexcalendar %}
-{% endblock forexcalendar%}
 
+    <table border="1" class="dataframe">
+    <thead>
+    <tr style="text-align: right;">
+      <th>Currency</th>
+      <th>Event</th>
+      <th>Impact</th>
+      <th>Time_Eastern</th>
+      <th>Forecast</th>
+      <th>Previous</th>
+    </tr>
+  </thead>
+ 
+   <tbody>
+     {% for cell in calget %}
+    <tr>
+      <td>{{cell.Currency}}</td>
+      <td>{{cell.Event}}</td>
+      <td>{{cell.Impact}}</td>
+      <td>{{cell.Time_Eastern}}</td>
+      <td>{{cell.Forecast}}</td>
+      <td>{{cell.Previous}}</td>
+    </tr>
+    {%endfor%}
+
+  </table>
 </div>
 
 
