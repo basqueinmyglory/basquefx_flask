@@ -25,7 +25,7 @@ for item in table:
     dict["date"] = datetime.today()
     dict["currency"] = item.find_all("td", {"class":"calendar__currency"})[0].text #Currency
     dict["event"] = item.find_all("td",{"class":"calendar__event"})[0].text.strip() #Event Name
-    dict["time_Eastern"] = item.find_all("td", {"class":"calendar__time"})[0].text #Time Eastern
+    dict["time_eastern"] = item.find_all("td", {"class":"calendar__time"})[0].text #Time Eastern
     impact = item.find_all("td", {"class":"impact"})
     
     for icon in range(0,len(impact)):
@@ -38,8 +38,8 @@ for item in table:
 ###Pandas - to clean table 
 df = pandas.DataFrame(forecasts_calevents)
 
-df['time_Eastern'] = df['time_Eastern'].replace("", np.nan).fillna(method='ffill')
-df = df[["date", "currency","event", "impact","time_Eastern","forecast", "previous"]]
+df['time_eastern'] = df['time_eastern'].replace("", np.nan).fillna(method='ffill')
+df = df[["date", "currency","event", "impact","time_eastern","forecast", "previous"]]
 df = df[df["impact"] == "High"]
 df.index.names = ['id']
 
