@@ -22,26 +22,26 @@ table = soup.find_all("tr",{"class":"calendar_row"})
 forecasts_calevents = []
 for item in table:
     dict = {}
-    dict["Date"] = datetime.today()
-    dict["Currency"] = item.find_all("td", {"class":"calendar__currency"})[0].text #Currency
-    dict["Event"] = item.find_all("td",{"class":"calendar__event"})[0].text.strip() #Event Name
-    dict["Time_Eastern"] = item.find_all("td", {"class":"calendar__time"})[0].text #Time Eastern
+    dict["date"] = datetime.today()
+    dict["currency"] = item.find_all("td", {"class":"calendar__currency"})[0].text #Currency
+    dict["event"] = item.find_all("td",{"class":"calendar__event"})[0].text.strip() #Event Name
+    dict["time_Eastern"] = item.find_all("td", {"class":"calendar__time"})[0].text #Time Eastern
     impact = item.find_all("td", {"class":"impact"})
     
     for icon in range(0,len(impact)):
-        dict["Impact"] = impact[icon].find_all("span")[0]['title'].split(' ', 1)[0]
+        dict["impact"] = impact[icon].find_all("span")[0]['title'].split(' ', 1)[0]
 
-    dict["Forecast"] = item.find_all("td", {"class":"calendar__forecast"})[0].text #forecasted Value
-    dict["Previous"] = item.find_all("td", {"class":"calendar__previous"})[0].text # Previous
+    dict["forecast"] = item.find_all("td", {"class":"calendar__forecast"})[0].text #forecasted Value
+    dict["previous"] = item.find_all("td", {"class":"calendar__previous"})[0].text # Previous
     forecasts_calevents.append(dict)
 
 ###Pandas - to clean table 
 df = pandas.DataFrame(forecasts_calevents)
 
-df['Time_Eastern'] = df['Time_Eastern'].replace("", np.nan).fillna(method='ffill')
-df = df[["Date", "Currency","Event", "Impact","Time_Eastern","Forecast", "Previous"]]
-df = df[df["Impact"] == "High"]
-
+df['time_Eastern'] = df['time_Eastern'].replace("", np.nan).fillna(method='ffill')
+df = df[["date", "currency","event", "impact","time_Eastern","forecast", "previous"]]
+df = df[df["impact"] == "High"]
+df.index.names = ['id']
 
 ###Appends data to Postgres
 df.to_sql('forecasts_calevents', engine, if_exists = "replace")
