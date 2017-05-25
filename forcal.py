@@ -19,7 +19,7 @@ soup = BeautifulSoup(content,"html.parser")
 table = soup.find_all("tr",{"class":"calendar_row"})
 #print(table)
 
-forcal = []
+forecasts_calevents = []
 for item in table:
     dict = {}
     dict["Date"] = datetime.today()
@@ -33,10 +33,10 @@ for item in table:
 
     dict["Forecast"] = item.find_all("td", {"class":"calendar__forecast"})[0].text #forecasted Value
     dict["Previous"] = item.find_all("td", {"class":"calendar__previous"})[0].text # Previous
-    forcal.append(dict)
+    forecasts_calevents.append(dict)
 
 ###Pandas - to clean table 
-df = pandas.DataFrame(forcal)
+df = pandas.DataFrame(forecasts_calevents)
 
 df['Time_Eastern'] = df['Time_Eastern'].replace("", np.nan).fillna(method='ffill')
 df = df[["Date", "Currency","Event", "Impact","Time_Eastern","Forecast", "Previous"]]
