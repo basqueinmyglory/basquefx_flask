@@ -44,4 +44,4 @@ df = df[df["Impact"] == "High"]
 
 
 ###Appends data to Postgres
-df.to_sql('events', engine, if_exists = "replace")
+df.to_sql('forecasts_calevents', engine, if_exists = "replace")
